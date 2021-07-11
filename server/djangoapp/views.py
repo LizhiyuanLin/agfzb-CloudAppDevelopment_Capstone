@@ -64,7 +64,7 @@ def registration_request(request):
     context = {}
     # If it is a GET request, just render the registration page
     if request.method == 'GET':
-        return render(request, 'onlinecourse/user_registration.html', context)
+        return render(request, 'onlinecourse/registration.html', context)
     # If it is a POST request
     elif request.method == 'POST':
         # <HINT> Get user information from request.POST
