@@ -70,8 +70,8 @@ def registration_request(request):
         # <HINT> Get user information from request.POST
         # <HINT> username, first_name, last_name, password
         username = request.POST['username']
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
+        first_name = request.POST['firstname']
+        last_name = request.POST['lastname']
         password = request.POST['psw']
         user_exist = False
         try:
