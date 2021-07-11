@@ -46,9 +46,9 @@ def login_request(request):
             return redirect('onlinecourse:popular_course_list')
         else:
             # If not, return to login page again
-            return render(request, 'djangoapp/user_login.html', context)
+            return render(request, 'djangoapp/index.html', context)
     else:
-        return render(request, 'djangoapp/user_login.html', context)
+        return render(request, 'djangoapp/index.html', context)
 
 # Create a `logout_request` view to handle sign out request
 def logout_request(request):
