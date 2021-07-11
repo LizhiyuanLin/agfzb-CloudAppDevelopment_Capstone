@@ -43,7 +43,7 @@ def login_request(request):
         if user is not None:
             # If user is valid, call login method to login current user
             login(request, user)
-            return redirect('onlinecourse:popular_course_list')
+            return redirect('djangoapp:popular_course_list')
         else:
             # If not, return to login page again
             return render(request, 'djangoapp/index.html', context)
@@ -64,7 +64,7 @@ def registration_request(request):
     context = {}
     # If it is a GET request, just render the registration page
     if request.method == 'GET':
-        return render(request, 'onlinecourse/registration.html', context)
+        return render(request, 'djangoapp/registration.html', context)
     # If it is a POST request
     elif request.method == 'POST':
         # <HINT> Get user information from request.POST
