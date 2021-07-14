@@ -117,6 +117,5 @@ def get_dealer_details(request, dealer_id):
         # Return a list of dealer short name
         return HttpResponse(reviews)
 # Create a `add_review` view to submit a review
-# def add_review(request, dealer_id):
-# ...
-
+def add_review(request, dealer_id):
+    pass
