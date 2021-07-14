@@ -23,6 +23,7 @@ def get_request(url, api_key=None, **kwargs):
     except:
         # If any error occurs
         print("Network exception occurred")
+    print(response.content)
     status_code = response.status_code
     print("With status {} ".format(status_code))
     json_data = json.loads(response.text)
@@ -73,6 +74,7 @@ def get_dealer_reviews_from_cf(url, dealerId):
         for review in reviews:
             # Create a CarDealer object with values in `doc` object
             review_obj = DealerReview(dealership=review["dealership"], review=review["review"], name=review["name"], purchase=review["purchase"], purchase_date=review["purchase_date"], car_make=review["car_make"], car_model=review["car_model"], car_year=review["car_year"], id=review["id"])
+            review_obj.sentiment = analyze_review_sentiments(review_obj.review)
             results.append(review_obj)
 
     return results
@@ -85,5 +87,9 @@ def analyze_review_sentiments(text):
     params = dict()
     params["text"] = text
     params["version"] = "2021-03-25"
-    return get_request("https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/b3f561f4-a5c4-438b-b8fd-033ea7ea3bc4", "f_2x4jss09rn2vJqoUVdcJQtSYdab2pwZTZXvrMLEvoU", params)
-
+    params["features"] =   {
+    'entities': {
+      'sentiment': True,
+    }
+  },
+    return get_request("https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/b3f561f4-a5c4-438b-b8fd-033ea7ea3bc4/v1/analyze", "f_2x4jss09rn2vJqoUVdcJQtSYdab2pwZTZXvrMLEvoU", **params)
