@@ -118,4 +118,20 @@ def get_dealer_details(request, dealer_id):
         return HttpResponse(reviews)
 # Create a `add_review` view to submit a review
 def add_review(request, dealer_id):
-    pass
+    if request.user.is_authenticated():
+        review = {
+            "review":{
+            "id":request.POST['id'],
+            "name":request.POST['name'],
+            "dealership":request.POST['dealership'],
+            "review":request.POST['review'],
+            "purchase":request.POST['purchase'],
+            "another":request.POST['another'],
+            "purchase_date":request.POST['purchase_date'],
+            "car_make":request.POST['car_make'],
+            "car_model":request.POST['car_model'],
+            "car_year":request.POST['car_year']
+            }
+        }
+        json_payload = {"review": review}
+        return HttpResponse(post_request(url, json_payload, dealerId=dealer_id))
