@@ -101,4 +101,4 @@ def analyze_review_sentiments(text):
     params["version"] = "2021-03-25"
     params["features"] = {'sentiment': True}
     params["return_analyzed_text"] = True
-    return get_request("https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/b3f561f4-a5c4-438b-b8fd-033ea7ea3bc4/v1/analyze", "f_2x4jss09rn2vJqoUVdcJQtSYdab2pwZTZXvrMLEvoU", **params)
+    return get_request("https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/b3f561f4-a5c4-438b-b8fd-033ea7ea3bc4/v1/analyze", "f_2x4jss09rn2vJqoUVdcJQtSYdab2pwZTZXvrMLEvoU", **params).get("sentiment").get("document").get("label")

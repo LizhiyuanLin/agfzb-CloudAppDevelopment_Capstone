@@ -109,10 +109,7 @@ def get_dealer_details(request, dealer_id):
         url = "https://0a24c5d2.us-south.apigw.appdomain.cloud/api/review"
         # Get reviews from the URL
         dealer_reviews = get_dealer_reviews_from_cf(url, dealer_id)
-        # Concat all dealer's short name
-        reviews = ' '.join([review.review for review in dealer_reviews])
-        # Return a list of dealer short name
-        return HttpResponse(reviews)
+        return render(request, 'djangoapp/dealer_details.html', {"reviews_list":dealer_reviews})
 # Create a `add_review` view to submit a review
 def add_review(request, dealer_id):
     if request.user.is_authenticated():
