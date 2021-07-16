@@ -41,7 +41,7 @@ class CarModel(models.Model):
     year = models.DateField()
 
     def __str__(self):
-        return f"Make: {self.make}, Name: {self.name}, Dealer Id: {self.dealer_id}, Type: {self.car_type}, Year: {self.year}"
+        return f"{self.make}-{self.name}-{self.year}"
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
 class CarDealer:
