@@ -22,8 +22,8 @@
             <hr>
             <label for="content"><b>Enter the review content</b></label>
             <textarea class="form-control" id="content" name="content" rows="2" required></textarea><br>
-            <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
             <label for="purchasecheck"><b>Has purchased the car from this Dealerhsip</b></label><br>
+            <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
             <label for="car"><b>Select your Car</b></label>
             <select name="car" id="car" class="form-select" required>
                 {% for car in cars %}
@@ -33,14 +33,14 @@
             <br>
             <label for="purchasedate"><b>Select your Purchase Date</b></label>
             <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
-            <script type="text/javascript">
-                $('input[name="purchasedate"]').datepicker({
-                    format: 'mm/dd/yyyy'
-                });
-            </script>
             <button class="button" type="submit">Submit</button>
         </div>
     </form>
 </body>
+<script type="text/javascript">
+    $('input[name="purchasedate"]').datepicker({
+        format: 'mm/dd/yyyy'
+    });
+</script>
 
 </html>
