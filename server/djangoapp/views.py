@@ -125,7 +125,7 @@ def add_review(request, dealer_id):
                 "name":request.user.first_name+" "+request.user.last_name,
                 "dealership":dealer_id,
                 "review":request.POST['content'],
-                "purchase":request.POST['purchase'],
+                "purchase":request.POST.get("purchase"),
                 "purchase_date":request.POST['purchase_date'],
                 "car_make":car.make.name,
                 "car_model":car.name,
