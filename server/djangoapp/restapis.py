@@ -35,7 +35,7 @@ def post_request(url, json_payload, **kwargs):
     print(kwargs)
     print("GET from {} ".format(url))
         # Call get method of requests library with URL and parameters
-    response = requests.post(url, params=kwargs, json=json_payload)
+    response = requests.post(url, params=json_payload, json=json_payload)
 
 # Create a get_dealers_from_cf method to get dealers from a cloud function
 # def get_dealers_from_cf(url, **kwargs):
