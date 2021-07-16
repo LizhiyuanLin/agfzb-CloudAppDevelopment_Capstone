@@ -113,7 +113,7 @@ def get_dealer_details(request, dealer_id):
 # Create a `add_review` view to submit a review
 def add_review(request, dealer_id):
     context = {}
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         if request.method == "GET":
             models = CarModel.objects.all().filter(dealer_id=dealer_id)
             context["cars"] = models
