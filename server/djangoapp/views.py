@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import CarModel
-from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf
+from .models import CarModel, DealerReview
+from .restapis import get_dealers_from_cf, get_dealer_reviews_from_cf, post_request
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from datetime import datetime
@@ -120,19 +120,20 @@ def add_review(request, dealer_id):
             context["dealer_id"] = dealer_id
             return render(request, 'djangoapp/add_review.html', context)
         elif request.method == 'POST':
+            car = CarModel.objects.get(id=request.POST['car'])
             review = {
                 "review":{
                 "id":request.POST['id'],
-                "name":request.POST['name'],
-                "dealership":request.POST['dealership'],
-                "review":request.POST['review'],
+                "name":request.user.first_name+" "+request.user.last_name,
+                "dealership":dealer_id,
+                "review":request.POST['content'],
                 "purchase":request.POST['purchase'],
-                "another":request.POST['another'],
                 "purchase_date":request.POST['purchase_date'],
-                "car_make":request.POST['car_make'],
-                "car_model":request.POST['car_model'],
-                "car_year":request.POST['car_year']
+                "car_make":car.car_make,
+                "car_model":car.car_model,
+                "car_year":car.car_year
                 }
             }
             json_payload = {"review": review}
-            return HttpResponse(post_request(url, json_payload, dealerId=dealer_id))
+            post_request("https://0a24c5d2.us-south.apigw.appdomain.cloud/api/review", json_payload)
+            return redirect("djangoapp:dealer_details", dealer_id=dealer_id)
