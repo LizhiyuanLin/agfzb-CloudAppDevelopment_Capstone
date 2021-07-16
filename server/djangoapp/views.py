@@ -128,9 +128,9 @@ def add_review(request, dealer_id):
                 "review":request.POST['content'],
                 "purchase":request.POST['purchase'],
                 "purchase_date":request.POST['purchase_date'],
-                "car_make":car.car_make,
-                "car_model":car.car_model,
-                "car_year":car.car_year
+                "car_make":car.make,
+                "car_model":car.name,
+                "car_year":car.year
                 }
             }
             json_payload = {"review": review}
