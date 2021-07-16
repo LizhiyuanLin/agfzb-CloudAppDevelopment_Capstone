@@ -123,7 +123,6 @@ def add_review(request, dealer_id):
             car = CarModel.objects.get(id=request.POST['car'])
             review = {
                 "review":{
-                "id":request.POST['id'],
                 "name":request.user.first_name+" "+request.user.last_name,
                 "dealership":dealer_id,
                 "review":request.POST['content'],
