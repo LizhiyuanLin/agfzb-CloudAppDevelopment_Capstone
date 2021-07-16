@@ -122,7 +122,6 @@ def add_review(request, dealer_id):
         elif request.method == 'POST':
             car = CarModel.objects.get(id=request.POST['car'])
             review = {
-                "review":{
                 "name":request.user.first_name+" "+request.user.last_name,
                 "dealership":dealer_id,
                 "review":request.POST['content'],
@@ -131,7 +130,6 @@ def add_review(request, dealer_id):
                 "car_make":car.make.name,
                 "car_model":car.name,
                 "car_year":car.year.strftime("%Y")
-                }
             }
             json_payload = {"review": review}
             post_request("https://0a24c5d2.us-south.apigw.appdomain.cloud/api/review", json_payload)
