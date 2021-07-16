@@ -29,10 +29,11 @@
                 <option selected value={{car.id}}>{{car.name}}-{{car.make.name}}-{{ car.year|date:"Y" }}</option>
                 {% endfor %}
             </select>
+            <br>
             <label for="purchasedate"><b>Select your Purchase Date</b></label>
             <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
             <script type="text/javascript">
-                $('.purchasedate').datepicker({
+                $('#purchasedate').datepicker({
                     format: 'mm/dd/yyyy'
                 });
             </script>
