@@ -12,7 +12,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
 </head>
-
+  <script type="text/javascript">
+      $('.date-own').datepicker({
+         format: 'mm/dd/yyyy'
+       });
+ </script>
 <body>
     <!--Add review form here -->
     <form action="{% url 'djangoapp:add_review' dealer_id %}" method="post">
@@ -32,15 +36,9 @@
             </select>
             <br>
             <label for="purchasedate"><b>Select your Purchase Date</b></label>
-            <input data-provide="datepicker">
+            <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
             <button class="button" type="submit">Submit</button>
         </div>
     </form>
 </body>
-<script type="text/javascript">
-    $('.datepicker').datepicker({
-        format: 'mm/dd/yyyy'
-    });
-</script>
-
 </html>
